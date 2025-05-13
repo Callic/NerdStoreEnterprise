@@ -9,6 +9,10 @@
       {
         "Path": "src\\services\\NSE.Catalogo.API\\NSE.Catalogo.API.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "src\\web\\NSE.WebApp.MVC\\NSE.WebApp.MVC.csproj",
+        "Action": "Start"
       }
     ]
   }

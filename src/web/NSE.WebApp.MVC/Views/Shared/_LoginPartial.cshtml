@@ -1,34 +1,32 @@
-﻿@inject NSE.WebApp.MVC.Extensions.IUser _appUser
+﻿@using NSE.WebApp.MVC.Extensions
+@inject IUser AppUser
 
+@if (AppUser.EstaAutenticado())
+{
 <div>
-    <div style="padding-right: 15px">
-        <a asp-controller="Carrinho" asp-action="Index" class="widget-header">
-            <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-            <span class="badge badge-pill badge-danger notify">@Model</span>
-        </a>
+    <vc:carrinho />
+</div>
+<div>
+    <div class="dropdown d-inline-block">
+        <a href="#" class="icontext dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <img class="icon icon-sm rounded-circle" src="https://s.gravatar.com/avatar/@AppUser.ObterUserEmail()?d=mm&s=45">
+        </a> <!-- iconbox // -->
+        <div class="dropdown-menu dropdown-menu-left" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 12px; left: 91px; transform: translate3d(150px, 32px, 0px);">
+            <a class="dropdown-item" href="#">Meu Perfil</a>
+            <a class="dropdown-item" asp-controller="Pedido" asp-action="MeusPedidos">Meus Pedidos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" asp-controller="Identidade" asp-action="Logout">Sair</a>
+        </div>
     </div>
 </div>
-<ul class="navbar-nav align-items-end">
-    @if (_appUser.EstaAutenticado())
-    {
-
-        <li class="nav-item">
-            <a class="nav-link text-dark" title="Manage">Olá @_appUser.ObterUserEmail()</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Identidade" asp-action="Logout">Sair</a>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="link-dark text-decoration-none" asp-controller="Identidade" asp-action="Registro">Crie sua conta</a>
-        </li>
-        <li class="nav-item">
-            <span class="ms-1 me-1">|</span>
-        </li>
-        <li class="nav-item">
-            <a class="link-dark text-decoration-none" asp-controller="Identidade" asp-action="Login">Login</a>
-        </li>
-    }
-</ul>
+}
+else
+{
+<div class="widget-header">
+    <small class="title text-muted">Bem vindo!</small>
+    <div>
+        <a asp-controller="Identidade" asp-action="Registro">Crie sua conta</a> <span> | </span>
+        <a asp-controller="Identidade" asp-action="Login"> Login</a>
+    </div>
+</div>
+}

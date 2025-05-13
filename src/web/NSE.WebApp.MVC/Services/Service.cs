@@ -1,4 +1,5 @@
 ﻿using NSE.WebApp.MVC.Extensions;
+using System.Text.Json;
 
 namespace NSE.WebApp.MVC.Services
 {
@@ -20,5 +21,13 @@ namespace NSE.WebApp.MVC.Services
             httpResponse.EnsureSuccessStatusCode();
             return true;
         }
+
+        public async Task<T> DeserializarObjetoResponse<T>(HttpResponseMessage response)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            var opt = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            return JsonSerializer.Deserialize<T>(content, opt)!;
+        }
+
     }
 }

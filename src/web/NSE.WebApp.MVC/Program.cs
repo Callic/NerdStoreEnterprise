@@ -2,12 +2,14 @@ using NSE.WebApp.MVC.Configuration;
 using NSE.WebApp.MVC.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+var appSettings = new AppSettings();
+builder.Configuration.Bind(appSettings);
+builder.Services.AddSingleton(appSettings);
 
 // Add services to the container.
 builder.Services.AddIdentityConfiguration();
 builder.Services.AddDependencyInjection();
 
-builder.Services.Configure<AppSettings>(builder.Configuration);
 
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(opt =>
