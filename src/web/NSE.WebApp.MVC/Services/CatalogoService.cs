@@ -24,7 +24,7 @@ namespace NSE.WebApp.MVC.Services
 
         public async Task<ProdutoViewModel> ObterProdutoPorId(Guid id)
         {
-            var response = await _httpClient.GetAsync($"api/catalogo/produtos/{id}");
+            var response = await _httpClient.GetAsync($"api/catalogo/produto/{id}");
             TratarRespostaErro(response);
             return await DeserializarObjetoResponse<ProdutoViewModel>(response);
         }

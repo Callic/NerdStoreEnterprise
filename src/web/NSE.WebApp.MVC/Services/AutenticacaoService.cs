@@ -14,11 +14,11 @@ namespace NSE.WebApp.MVC.Services
         private readonly AppSettings _appSettings;
         public AutenticacaoService(IHttpClientFactory httpClientFactory,
                                    ILogger<AutenticacaoService> logger,
-                                   IOptions<AppSettings> appSettings)
+                                   AppSettings appSettings)
         {
             _httpClientFactory = httpClientFactory;
             _logger = logger;
-            _appSettings = appSettings.Value;
+            _appSettings = appSettings;
         }
 
         public async Task<Token> LoginAsync(UsuarioLogin usuarioLogin)

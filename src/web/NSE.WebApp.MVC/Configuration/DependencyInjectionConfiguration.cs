@@ -8,9 +8,14 @@ namespace NSE.WebApp.MVC.Configuration
     {
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
-            services.AddHttpClient();
+
+
+            services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
-            services.AddScoped<ICatalogoService, CatalogoService>();
+                
+            services.AddHttpClient<ICatalogoService, CatalogoService>()
+                .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>();
+            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUser, AspNetUser>();
             return services;

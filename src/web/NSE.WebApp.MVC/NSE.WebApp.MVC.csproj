@@ -6,12 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Views\Shared\Components\**" />
-    <Content Remove="Views\Shared\Components\**" />
-    <EmbeddedResource Remove="Views\Shared\Components\**" />
-    <None Remove="Views\Shared\Components\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\building blocks\NSE.Core\NSE.Core.csproj" />

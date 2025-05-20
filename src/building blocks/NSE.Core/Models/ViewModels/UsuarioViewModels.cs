@@ -4,6 +4,13 @@ namespace NSE.Core.Models.ViewModels
 {
     public class UsuarioRegistro
     {
+
+        [Required(ErrorMessage = "Digite seu nome")]
+        public  string Nome { get; set; }
+
+        [Required(ErrorMessage = "Digite seu CPF")]
+        public string Cpf { get; set; }
+
         [Required]
         [EmailAddress(ErrorMessage = "O campo email está em um formato inválido")]
         public string Email { get; set; }
@@ -13,7 +20,7 @@ namespace NSE.Core.Models.ViewModels
         public string Senha { get; set; }
 
         [Compare("Senha", ErrorMessage = "As senhas não conferem")]
-        public string SenhaConfirmação { get; set; }
+        public string SenhaConfirmacao { get; set; }
     }
 
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NSE.WebApp.MVC.Services.Interfaces;
-using System.Threading.Tasks;
 
 namespace NSE.WebApp.MVC.Controllers
 {
@@ -25,9 +24,10 @@ namespace NSE.WebApp.MVC.Controllers
 
         [Route("detalhes/{id}")]
         [HttpGet]
-        public IActionResult ProdutoDetalhe(Guid id)
+        public async Task <IActionResult> ProdutoDetalhe(Guid id)
         {
             if (id == Guid.Empty) return NotFound();
+            var produto = await _catalogoService.ObterProdutoPorId(id);
             return View(id);
         }
     }
