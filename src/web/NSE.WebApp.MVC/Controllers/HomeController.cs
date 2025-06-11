@@ -16,6 +16,17 @@ namespace NSE.WebApp.MVC.Controllers
             return View();
         }
 
+
+        [HttpGet("sistema-indisponivel")]
+        public IActionResult SistemaIndisponivel()
+        {
+            ErrorViewModel model = new();
+            model.ErrorCode = 503;
+            model.Mensagem = "O sistema está temporariamente indisponível. Tente novamente mais tarde ou entre em contato com nosso suporte";
+            model.Titulo = "Sistema Indisponível";
+            return View("Error", model);
+        }
+
         [HttpGet("erro/{id}")]
         public IActionResult Error(int id)
         {
